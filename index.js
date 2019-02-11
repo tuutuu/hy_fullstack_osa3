@@ -38,11 +38,6 @@ let persons = [
     }
 ]
 
-const currentDate = new Date()
-
-const info = `<p> Puhelinluettelossa ${persons[0].persons.length} henkilön tiedot </p>
-              <p> ${currentDate} </p>`
-
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
@@ -52,6 +47,9 @@ app.get('/api/persons', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
+    const currentDate = new Date()
+    const info = `<p> Puhelinluettelossa ${persons[0].persons.length} henkilön tiedot </p>
+                  <p> ${currentDate} </p>`
     res.send(info)
 })
 
@@ -63,6 +61,12 @@ app.get('/api/persons/:id', (req, res) => {
     else
         res.status(404).end()
 })
+
+app.delete('/api/persons/:id', (req, res) => {
+    const id = Number(req.params.id);
+    persons = persons[0].persons.filter(person => person.id !== id);
+    res.status(204).end();
+  });
 
 const PORT = 3001
 app.listen(PORT, () => {
