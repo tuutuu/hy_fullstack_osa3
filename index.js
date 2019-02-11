@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 let persons = [
     {
@@ -38,6 +41,8 @@ let persons = [
     }
 ]
 
+const randomId = () => Math.floor(Math.random() * 100000)
+
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
@@ -66,7 +71,30 @@ app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id);
     persons = persons[0].persons.filter(person => person.id !== id);
     res.status(204).end();
-  });
+})
+
+app.post('/api/persons', (req, res) => {
+    const body = req.body
+
+    if (body.name === undefined || body.number === undefined)
+        res.status(400).json({
+            error: 'content missing'
+        })
+    
+    if (persons[0].persons.find(person => person.name === body.name))
+        res.status(400).json({
+            error: 'name must be unique'
+        })
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: randomId()
+    }
+
+    persons[0].persons.concat(person)
+    res.json(person)
+})
 
 const PORT = 3001
 app.listen(PORT, () => {
