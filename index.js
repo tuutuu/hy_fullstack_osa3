@@ -38,15 +38,24 @@ let persons = [
     }
 ]
 
+const currentDate = new Date()
+
+const info = `<p> Puhelinluettelossa ${persons[0].persons.length} henkilön tiedot </p>
+              <p> ${currentDate} </p>`
+
 app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
+    res.send('<h1>Hello World!</h1>')
 })
 
 app.get('/api/persons', (req, res) => {
-  res.json(persons)
+    res.json(persons)
+})
+
+app.get('/info', (req, res) => {
+    res.send(info)
 })
 
 const PORT = 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`)
 })
