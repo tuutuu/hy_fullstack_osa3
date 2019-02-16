@@ -1,30 +1,26 @@
 {
   "name": "hy_fullstack_osa3",
   "version": "1.0.0",
-  "description": "osa3",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "watch": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tuutuu/hy_fullstack_osa3.git"
+    "start": "node index.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tuutuu/hy_fullstack_osa3/issues"
-  },
-  "homepage": "https://github.com/tuutuu/hy_fullstack_osa3#readme",
+  "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "morgan": "^1.9.1"
+    "mongoose": "^5.4.5",
+    "mongoose-unique-validator": "^2.0.2",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
-    "nodemon": "^1.18.10"
+    "eslint": "^5.12.1"
   }
 }
